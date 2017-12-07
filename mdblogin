@@ -16,7 +16,7 @@ then
 fi
 
 user='root'
-password='B033562027D95A0F17 '
+password=''
 if [ $# -eq 1 ]
 then
     port=$1
