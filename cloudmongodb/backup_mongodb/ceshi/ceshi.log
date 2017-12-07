@@ -1,0 +1,26 @@
+
+PLAY [backup_ceshi] *********************************************************** 
+
+TASK: [mongobackup3210] ******************************************************* 
+changed: [g1-bak-all-05] => (item={'key': u'1', 'value': {u'backup_version': u'mongodb3210', u'host': u'10.1.180.12', u'port': 3001, u'backup_directory': u'/data/ceshi', u'backup_clean_up': 10}})
+skipping: [g1-bak-all-05] => (item={'key': u'2', 'value': {u'backup_version': u'mongodb2610', u'host': u'10.1.6.167', u'port': 50000, u'backup_directory': u'/data/ceshi01_qe', u'backup_clean_up': 0}})
+
+TASK: [mongobackup2610] ******************************************************* 
+skipping: [g1-bak-all-05] => (item={'key': u'1', 'value': {u'backup_version': u'mongodb3210', u'host': u'10.1.180.12', u'port': 3001, u'backup_directory': u'/data/ceshi', u'backup_clean_up': 10}})
+changed: [g1-bak-all-05] => (item={'key': u'2', 'value': {u'backup_version': u'mongodb2610', u'host': u'10.1.6.167', u'port': 50000, u'backup_directory': u'/data/ceshi01_qe', u'backup_clean_up': 0}})
+
+TASK: [mongobackup2414] ******************************************************* 
+skipping: [g1-bak-all-05] => (item={'key': u'1', 'value': {u'backup_version': u'mongodb3210', u'host': u'10.1.180.12', u'port': 3001, u'backup_directory': u'/data/ceshi', u'backup_clean_up': 10}})
+skipping: [g1-bak-all-05] => (item={'key': u'2', 'value': {u'backup_version': u'mongodb2610', u'host': u'10.1.6.167', u'port': 50000, u'backup_directory': u'/data/ceshi01_qe', u'backup_clean_up': 0}})
+
+TASK: [mongobackup_default_clean] ********************************************* 
+skipping: [g1-bak-all-05] => (item={'key': u'1', 'value': {u'backup_version': u'mongodb3210', u'host': u'10.1.180.12', u'port': 3001, u'backup_directory': u'/data/ceshi', u'backup_clean_up': 10}})
+changed: [g1-bak-all-05] => (item={'key': u'2', 'value': {u'backup_version': u'mongodb2610', u'host': u'10.1.6.167', u'port': 50000, u'backup_directory': u'/data/ceshi01_qe', u'backup_clean_up': 0}})
+
+TASK: [mongobackup_clean] ***************************************************** 
+changed: [g1-bak-all-05] => (item={'key': u'1', 'value': {u'backup_version': u'mongodb3210', u'host': u'10.1.180.12', u'port': 3001, u'backup_directory': u'/data/ceshi', u'backup_clean_up': 10}})
+skipping: [g1-bak-all-05] => (item={'key': u'2', 'value': {u'backup_version': u'mongodb2610', u'host': u'10.1.6.167', u'port': 50000, u'backup_directory': u'/data/ceshi01_qe', u'backup_clean_up': 0}})
+
+PLAY RECAP ******************************************************************** 
+g1-bak-all-05              : ok=5    changed=4    unreachable=0    failed=0   
+

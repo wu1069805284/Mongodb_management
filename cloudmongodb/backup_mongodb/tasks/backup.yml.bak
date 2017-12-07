@@ -1,0 +1,14 @@
+---
+- name: backup_ceshi
+  gather_facts: False
+  hosts: ceshi
+  serial: 15
+  tasks:
+   - name: ceshi
+#     script: backup_mongo.sh -h {{ hostname }} -p {{ port }}  -v {{ backup_version }} -a {{ all }} -l {{ directory }}
+     script: ../script/backup_mongo.sh "-u {{ item.user }} -p {{ item.password }} -h {{ item.hostname }} -P {{ item.port }} -d {{ database }} -v {{ backup_version }} -a {{ db }} -l {{ item.directory }}"
+     with_items: 
+     - { user : "admin" , password: "admin" , hostname: "10.1.180.12" , port: "3001" , directory: "/data/ceshi" } 
+   
+   - name: Version than
+     dbug: msg="{{ item.user }}"

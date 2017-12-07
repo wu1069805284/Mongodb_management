@@ -1,0 +1,16 @@
+---
+- hosts: ceshi
+  gather_facts: False
+#  tasks: 
+#     - name: debug loops
+#       debug: msg="name ----> {{ item }} {{ inventory_hostname }}"
+#       with_items:
+#             - one
+#             - tow
+  tasks:
+      - name: debug loops
+        shell: cat /root/Ansible
+        register: host
+        until: host.stdout.startswith("wuwei")
+        retries: 1
+        delay: 1

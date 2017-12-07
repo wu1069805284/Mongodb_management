@@ -1,0 +1,30 @@
+{"backup_list": { 
+"backup_list01": { 
+"user":"admin",
+"password":"admin",
+"host":"10.1.180.12",
+"port":"3001",
+"backup_directory":"/data/ceshi",
+"backup_version":"mongodb3210",
+"backup_clean_up":10
+},
+"backup_list02": { 
+"user":"admin",
+"password":"111",
+"host":"10.1.6.167",
+"port":"50000",
+"backup_directory":"/data/ceshi01_qe",
+"backup_version":"mongodb2610",
+"backup_clean_up":10
+},
+"backup_list03": { 
+"user":"admin",
+"password":"admin",
+"host":"10.1.180.12",
+"port":"3002",
+"backup_directory":"/data/ceshi01",
+"backup_version":"mongodb3210",
+"backup_clean_up":0
+}	    
+}
+}

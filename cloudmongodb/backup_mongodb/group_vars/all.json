@@ -1,0 +1,256 @@
+{
+    "backup_list": {
+        "1": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7301", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7301
+        }, 
+        "2": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7302", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7302
+        }, 
+        "3": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7303", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7303
+        }, 
+        "4": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7304", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7304
+        }, 
+        "5": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7305", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7305
+        }, 
+        "6": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7306", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7306
+        }, 
+        "7": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7307", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7307
+        }, 
+        "8": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7308", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7308
+        }, 
+        "9": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7309", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7309
+        }, 
+        "17": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7310", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7310
+        }, 
+        "18": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7311", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7311
+        }, 
+        "19": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7312", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7312
+        }, 
+        "20": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7313", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7313
+        }, 
+        "21": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7314", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7314
+        }, 
+        "22": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7315", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7315
+        }, 
+        "23": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7316", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.30", 
+            "port": 7316
+        }, 
+        "24": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7317", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7317
+        }, 
+        "25": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7318", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7318
+        }, 
+        "26": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7319", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7319
+        }, 
+        "27": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7320", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7320
+        }, 
+        "28": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7321", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7321
+        }, 
+        "29": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7322", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7322
+        }, 
+        "30": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7323", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7323
+        }, 
+        "31": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7324", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7324
+        }, 
+        "32": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7325", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7325
+        }, 
+        "33": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7326", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7326
+        }, 
+        "34": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7327", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7327
+        }, 
+        "35": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7328", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7328
+        }, 
+        "36": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7329", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7329
+        }, 
+        "37": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7330", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7330
+        }, 
+        "38": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7331", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7331
+        }, 
+        "39": {
+            "backup_clean_up": 14, 
+            "backup_directory": "/data00/58mongodb/7332", 
+            "backup_version": "2.6", 
+            "host": "10.136.202.76", 
+            "port": 7332
+        }, 
+        "40": {
+            "backup_clean_up": 20, 
+            "backup_directory": "/data00/58mongodb/7001", 
+            "backup_version": "3.2", 
+            "host": "10.126.124.221", 
+            "port": 7001
+        }, 
+        "41": {
+            "backup_clean_up": 20, 
+            "backup_directory": "/data00/58mongodb/7402", 
+            "backup_version": "2.6", 
+            "host": "10.136.198.224", 
+            "port": 7402
+        }, 
+        "42": {
+            "backup_clean_up": 30, 
+            "backup_directory": "/data00/58mongodb/8001", 
+            "backup_version": "2.6", 
+            "host": "10.136.198.224", 
+            "port": 8001
+        }, 
+        "43": {
+            "backup_clean_up": 40, 
+            "backup_directory": "/data00/58mongodb/7403", 
+            "backup_version": "3.2", 
+            "host": "10.126.124.205", 
+            "port": 7403
+        }
+    }
+}

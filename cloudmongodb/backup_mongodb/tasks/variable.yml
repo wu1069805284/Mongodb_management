@@ -1,0 +1,24 @@
+---
+- hosts: backup
+  gather_facts: False 
+#  vars:
+#        key: Ansible
+  vars_files:
+        - ../vars/var.json
+#  vars_prompt:
+#      - name: "one"
+#        prompt: "please input one value"
+#        private: no
+#      - name: "two"
+#        prompt: "please input two value" 
+#        default: 'wuweijian'
+#        private: yes
+  tasks:
+      - name: register variables 
+        shell: hostname
+        register: info
+    
+      - name: display host variable  from hostfile
+        debug: msg="The {{ inventory_hostname }} Vaule is {{ item.key }}"
+#      - name: vars_prompt private
+#        debug: msg="The {{ inventory_hostname }} Vaule id {{ two }}"

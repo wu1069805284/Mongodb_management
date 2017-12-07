@@ -1,0 +1,20 @@
+/usr/local/lib/python2.7/site-packages/celery/platforms.py:793: RuntimeWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the -u option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  uid=uid, euid=euid, gid=gid, egid=egid,
+[2017-05-09 14:59:11,389: INFO/MainProcess] Connected to redis://localhost:6001//
+[2017-05-09 14:59:11,405: INFO/MainProcess] mingle: searching for neighbors
+[2017-05-09 14:59:12,435: INFO/MainProcess] mingle: all alone
+[2017-05-09 14:59:12,451: INFO/MainProcess] celery@bjm6-196-59.58os.org ready.
+[2017-05-09 15:07:46,051: INFO/MainProcess] Received task: Celery_proj.tasks.ansible_bak[e5959298-c758-486f-a8dc-faa4bd79a26a]  ETA:[2017-05-09 15:09:00+08:00] 
+[2017-05-09 15:07:46,053: INFO/MainProcess] Received task: Celery_proj.tasks.ansible_bak[8d698fc4-01a0-40dd-bbf8-ac0eb4717e29]  ETA:[2017-05-09 15:10:00+08:00] 
+[2017-05-09 15:09:14,385: INFO/PoolWorker-1] ansible_initialize 10.126.103.28:7314 >>> OK
+[2017-05-09 15:11:02,513: INFO/PoolWorker-2] ansible_initialize 10.126.103.27:7315 >>> OK
+[2017-05-09 15:15:29,337: INFO/PoolWorker-1] ansible_backup 10.126.103.28:7314 >>> OK
+[2017-05-09 15:15:29,350: INFO/PoolWorker-1] Task Celery_proj.tasks.ansible_bak[e5959298-c758-486f-a8dc-faa4bd79a26a] succeeded in 389.264677415s: '10.126.103.28:7314 >>> OK'
+[2017-05-09 15:18:49,159: INFO/PoolWorker-2] ansible_backup 10.126.103.27:7315 >>> OK
+[2017-05-09 15:18:49,173: INFO/PoolWorker-2] Task Celery_proj.tasks.ansible_bak[8d698fc4-01a0-40dd-bbf8-ac0eb4717e29] succeeded in 529.162840195s: '10.126.103.27:7315 >>> OK'

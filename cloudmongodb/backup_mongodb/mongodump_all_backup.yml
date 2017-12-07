@@ -1,0 +1,48 @@
+---
+- name: backup_ceshi
+  gather_facts: False
+  hosts: mongo_backup
+  serial: 24
+  vars:
+        user: backup_user 
+  vars_files:
+        - /work/wuweijian/cloudmongodb/backup_mongodb/files/external_vars.yml
+  
+  tasks:
+   
+   - name: mongobackup3210
+#     include: ./include.yml  
+     #debug: msg="{{item.value.port}}"
+     script: script/backup_mongo.sh -u {{ user }} -p {{ password }} -h {{ item.value.host }} -P {{ item.value.port }} -v {{ version }} -V /opt/soft/{{item.value.backup_version}}/bin/mongodump -a {{ db }} -l {{ item.value.backup_directory }} -c --numParallelCollections=12
+     when: item.value.backup_version == "3.2"
+     with_dict: backup_list
+#     async: 30
+#     poll: 3
+   
+   - name: mongobackup2610
+     script: script/backup_mongo.sh -u {{ user }} -p {{ password }} -h {{ item.value.host }} -P {{ item.value.port }}  -v {{ version }} -V /opt/soft/{{item.value.backup_version}}/bin/mongodump  -a {{ db }} -l {{ item.value.backup_directory }}     
+     when: item.value.backup_version == "2.6"
+     with_dict: backup_list
+
+
+   - name: mongobackup2414
+     script: script/backup_mongo.sh -u {{ user }} -p {{ password }} -h {{ item.value.host }} -P {{ item.value.port }}  -v {{ version }} -V /opt/soft/{{item.value.backup_version}}/bin/mongodump  -a {{ db }} -l {{ item.value.backup_directory }}
+     when: item.value.backup_version == "2.4"
+     with_dict: backup_list
+
+   
+   - name: mongobackup_default_clean
+     script: script/backup_cleanup.sh {{item.value.backup_directory}} 10
+     when: item.value.backup_clean_up == 0
+     with_dict: backup_list
+
+   - name: mongobackup_clean
+     script:  script/backup_cleanup.sh {{item.value.backup_directory}} {{item.value.backup_clean_up}}
+     when: item.value.backup_clean_up != 0
+     with_dict: backup_list
+  
+
+
+
+
+

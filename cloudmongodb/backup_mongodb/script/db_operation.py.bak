@@ -1,0 +1,126 @@
+#!/usr/bin/python
+import os,sys,json,MySQLdb
+
+def dbtime_polling():
+	try:
+               	conn=MySQLdb.connect(user='root',passwd='backup',host='127.0.0.1',db='cloud_mongodb',port=3302)
+               	cur=conn.cursor()
+
+         	sql01=''' 
+		update cloud_mongodb.backup_mongo_status set execution_status=0 where update_time=%s  
+		'''
+		sql02='''
+                select * from backup_client_infomation where tag=0 and bak_switch='ON'
+                '''
+		sql03='''
+		select *  from backup_mongo_status
+		'''
+		sql04='''
+		select max(available_size_G) from backup_host_infomation where ipaddress=%s and statdate_time=CURRENT_DATE;
+		'''
+#		sql04='''
+#		select max(available_size_G) from backup_host_infomation where ipaddress=%s and statdate_time=DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+#		'''
+		sql05='''
+		select mount_directory from backup_host_infomation where ipaddress="%s" and available_size_G=%s limit 1;
+		'''
+		sql06='''
+		select ipaddress from backup_mongo_status where execution_status=0;
+		'''
+		sql07='''
+		update backup_client_infomation set main_path="%s" ;
+		'''		
+
+		cur.execute("update cloud_mongodb.backup_mongo_status set execution_status=1 where execution_status=0")
+               	cur.execute("select min(update_time) from  cloud_mongodb.backup_mongo_status")
+               	min_date=cur.fetchone()
+               	cur.execute(sql01,min_date)
+               	cur.execute("update cloud_mongodb.backup_mongo_status set update_time=now() where execution_status=0")
+		cur.execute(sql06)
+		update_ip=cur.fetchone()
+		cur.execute(sql04,update_ip)
+		available=cur.fetchone()
+		cur.execute(sql05 %(update_ip[0], available[0]))
+		max_directory=cur.fetchone()
+		cur.execute(sql07 %max_directory[0])
+		conn.commit()
+
+	       	values={}
+	       	va={}
+		vb = cur.execute(sql02)
+		result=cur.fetchall()
+		for value in result:
+			values['id']=value[0]
+			host=value[1]
+                        port=value[2]
+			backup_directory=str(value[3]) + '/58mongodb/' + str(value[2]) 
+			backup_version=value[4]
+			backup_clean_up=value[5]
+			tag=value[6]			
+			va[values['id']] ={
+				"host" : host,
+				"port" : port,
+				"backup_directory" : backup_directory,
+				"backup_version" : backup_version,
+				"backup_clean_up" : backup_clean_up
+				}
+		vc =  { "backup_list": va }
+		with open('/data1/github/cloudmongodb/ansible/backup_ceshi/group_vars/all.json','w') as file :
+			json.dump(vc, file, indent=4, sort_keys=True)
+			
+		conn.commit()	
+		sc=cur.execute("select * from backup_client_infomation where tag=1 and bak_switch='ON'")
+		result=cur.fetchall()
+		for value in result:
+			id=str(value[0])
+			host=value[1]
+			port=str(value[2])
+			backup_directory=str(value[3]) + '/58mongodb/' + str(value[2])
+			backup_version=value[4]
+			backup_clean_up=value[5]
+			backupfilename=backup_version + '_' + id + '_backup.sh'
+			ymlfilename=backup_version + '_' + id + '_backup.yml'
+			bf=open(sys.path[0] + '/async_shell_backup/' + backupfilename,'w')
+			yf=open(sys.path[0] + '/async_yml_backup/' + ymlfilename,'w')
+			if backup_version == 'mongodb3210':
+				backupcontent =  '''dt=`date +%%y%%m%%d%%H%%M` \nbackupdir=%s/mongodb_backup \nbakdir=${backupdir}/mongoall_backup \nlogdir=%s/mongodb_log \n\nif [ ! -d '$bakdir' ];then \n     mkdir -p $bakdir  \nfi \n:> $logdir/rsync_allbackup.log \n\n/opt/soft/%s/bin/mongodump -u$1 -p$2 --host=%s --port=%s --authenticationDatabase=admin --oplog  -o $bakdir --numParallelCollections=12  >> $logdir/rsync_allbackup.log  \n\nif [ $? -ne 0 ]; then\n   mysql -udba -pbackup  -h 10.1.180.12 -P3302 -e  "insert into cloud_mongodb.backup_status_log(objective_host,port,backup_mode,backup_tactics,backup_directory,backup_status,create_time,statdate_time) values('%s','%s','mongodump','async_full','%s','failure',now(),curdate())"   \n   exit 1\nelse \n   mysql -udba -pbackup  -h 10.1.180.12 -P3302 -e  "insert into cloud_mongodb.backup_status_log(objective_host,port,backup_mode,backup_tactics,backup_directory,backup_status,create_time,statdate_time) values('%s','%s','mongodump','async_full','%s','successful',now(),curdate())"   \nfi \ncd ${backupdir} ; tar -cv mongoall_backup  |  pigz -9 -p 12 -k > mongoall_${dt}_dump.tgz \necho $dt ::  Compression success   >>  $logdir/rsync_allbackup.log\nrm -rf ${bakdir}\nfind $backupdir -mtime +%s -name "*.tgz" -exec rm -rf {} \;''' %(backup_directory,backup_directory,backup_version,host,port,host,port,backup_directory,host,port,backup_directory,backup_clean_up)
+			else:					
+				backupcontent =  '''dt=`date +%%y%%m%%d%%H%%M` \nbackupdir=%s/mongodb_backup \nbakdir=${backupdir}/mongoall_backup \nlogdir=%s/mongodb_log \n\nif [ ! -d '$bakdir' ];then \n     mkdir -p $bakdir  \nfi \n:> $logdir/rsync_allbackup.log \n\n/opt/soft/%s/bin/mongodump -u$1 -p$2 --host=%s --port=%s --authenticationDatabase=admin --oplog -o $bakdir >> $logdir/rsync_allbackup.log  \n\nif [ $? -ne 0 ]; then\n   mysql -udba -pbackup  -h 10.1.180.12 -P3302 -e  "insert into cloud_mongodb.backup_status_log(objective_host,port,backup_mode,backup_tactics,backup_directory,backup_status,create_time,statdate_time) values('%s','%s','mongodump','async_full','%s','failure',now(),curdate())"   \n   exit 1\nelse \n   mysql -udba -pbackup  -h 10.1.180.12 -P3302 -e  "insert into cloud_mongodb.backup_status_log(objective_host,port,backup_mode,backup_tactics,backup_directory,backup_status,create_time,statdate_time) values('%s','%s','mongodump','async_full','%s','successful',now(),curdate())"   \nfi \ncd ${backupdir} ; tar -cv mongoall_backup  |  pigz -9 -p 12 -k > mongoall_${dt}_dump.tgz\necho $dt  ::  Compression success   >>  $logdir/rsync_allbackup.log\nrm -rf ${bakdir}\nfind $backupdir -mtime +%s -name "*.tgz" -exec rm -rf {} \;''' %(backup_directory,backup_directory,backup_version,host,port,host,port,backup_directory,host,port,backup_directory,backup_clean_up)
+		
+			ymlcontent = "--- \n- name: backup_ceshi \n  gather_facts: False \n  hosts: mongo_backup \n  serial: 24 \n  vars: \n     user: backup_user \n  vars_files: \n     - /data1/github/cloudmongodb/ansible/backup_ceshi/files/external_vars.yml \n  tasks: \n     - name: mongobackup \n       script: %s {{user}} {{password}}" %(sys.path[0] + '/async_shell_backup/' + backupfilename)
+
+			bf.write(backupcontent)
+			yf.write(ymlcontent)
+			bf.close()
+			yf.close()
+		
+
+		status=cur.execute(sql03)
+		result=cur.fetchall()
+		f=open(sys.path[0] + '/backup_host','w')
+		d=open('/data1/github/cloudmongodb/ansible/backup_ceshi/inventory/backup_host','w')
+		d.writelines('[backup_host]')
+		d.close()
+		d=open('/data1/github/cloudmongodb/ansible/backup_ceshi/inventory/backup_host','a')
+		for i in result:
+			ipaddress=i[2]
+			f.writelines(str(ipaddress)+"\n")
+			d.writelines('\n' + str(ipaddress))
+		f.close()
+		d.close()
+
+		conn.commit()
+		cur.close()
+	
+	except MySQLdb.Error ,e:
+		
+		print	"Error %d:%s" % (e.args[0], e.args[1])
+		
+		try:  
+    			sqlError =  "Error %d:%s" % (e.args[0], e.args[1])  
+		except IndexError:  
+    			print "MySQL Error:%s" % str(e) 
+
+
+if __name__ == '__main__':
+	dbtime_polling()

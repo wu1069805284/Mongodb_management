@@ -1,0 +1,10 @@
+---
+- hosts: ceshi
+  gather_facts: True 
+  seriar: 15
+  vars: 
+     contents: "{{ lookup('template', '../template/lookups.j2' ) }}"
+  tasks:
+     - name: debug lookups
+       debug: msg="The contens is {% for i in contents.split("\n") %} {{ i }} {% endfor %}"
+

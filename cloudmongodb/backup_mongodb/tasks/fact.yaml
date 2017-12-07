@@ -1,0 +1,5 @@
+---
+- name : print system
+  gather_facts: True
+  tasks:
+  - debug: var=[inventory_hostname]

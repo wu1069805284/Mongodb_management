@@ -1,0 +1,10 @@
+---
+- name: backup_ceshi
+  gather_facts: False
+  hosts: ceshi
+  serial: 15
+  vars_files:
+    - "var.json"  
+  tasks:
+    - name: ceshi
+      debug: msg="{{ directory }}"

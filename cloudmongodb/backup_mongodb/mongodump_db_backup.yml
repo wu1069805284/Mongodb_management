@@ -1,0 +1,23 @@
+---
+- name: backup_ceshi
+  gather_facts: True
+  hosts: backup
+  serial: 15
+  tasks:
+   
+   - name: mongobackup3210
+#     include: ./include.yml  
+     #debug: msg="{{item.value.port}}"
+     script: script/backup_mongo.sh -u {{ item.value.user }} -p {{ item.value.password }} -h {{ item.value.host }} -P {{ item.value.port }} -v {{ version }} -V /opt/soft/{{item.value.backup_version}}/bin/mongodump -a {{ db }} -l {{ item.value.backup_directory }}
+     when: item.value.backup_version == "mongodb3210"
+     with_dict: backup_list
+   
+   - name: mongobackup2610
+     script: script/backup_mongo.sh -u {{ item.value.user }} -p {{ item.value.password }} -h {{ item.value.host }} -P {{ item.value.port }}  -v {{ version }} -V /opt/soft/{{item.value.backup_version}}/bin/mongodump  -a {{ db }} -l {{ item.value.backup_directory }}
+     when: item.value.backup_version == "mongodb2610"
+     with_dict: backup_list
+    
+   - name: mongobackup2414
+     script: script/backup_mongo.sh -u {{ item.value.user }} -p {{ item.value.password }} -h {{ item.value.host }} -P {{ item.value.port }}  -v {{ version }} -V /opt/soft/{{item.value.backup_version}}/bin/mongodump  -a {{ db }} -l {{ item.value.backup_directory }}
+     when: item.value.backup_version == "mongodb2414"
+     with_dict: backup_list

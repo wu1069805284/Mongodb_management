@@ -1,0 +1,48 @@
+#!/bin/bash
+## Note:Auto Login MongoDB Node.
+##
+source /etc/profile
+export LANG=en_US.UTF-8
+HOST="$2"
+function  Usage()
+{
+    echo "Usage: sh $0 port[port must be number]" 
+}
+
+if [[ "$#" -ne 1 ]]  
+then
+    Usage
+    exit 1
+fi
+
+user='root'
+password='B033562027D95A0F17 '
+if [ $# -eq 1 ]
+then
+    port=$1
+    if [ "`expr $port + 0`" == "" ]
+    then
+        Usage
+        exit 1
+    fi
+fi
+
+mongo2=/opt/soft/mongodb26/
+mongo3=/opt/soft/mongodb3210/
+
+if [ ${port} == 7111 ] || [ ${port} == 7112 ]
+then 
+    $mongo2/bin/mongo --quiet --authenticationDatabase admin --host ${host} --port ${port} 
+    exit 0
+
+elif [ -d $mongo3 ] 
+then
+    $mongo3/bin/mongo --quiet -u $user -p $password --authenticationDatabase admin --host ${HOST-'127.0.0.1'} --port ${port}
+    exit 0
+else
+    echo "Login Error!"
+    echo "You Must Have a MySQL client!"
+    exit 1
+fi
+
+exit 0

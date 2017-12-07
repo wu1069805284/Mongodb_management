@@ -1,0 +1,13 @@
+---
+- name: backup_ceshi
+  hosts: backup 
+  gather_facts: False
+  serial: 15
+  vars:
+        user : admin
+#  vars_files: 
+#        - /data1/github/cloudmongodb/ansible/backup_ceshi/files/external_vars.yml 
+  tasks:
+   - name: ceshi
+     debug: msg={{user}}
+   #  with_dict: backup_list

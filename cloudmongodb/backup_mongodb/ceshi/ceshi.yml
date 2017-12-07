@@ -1,0 +1,20 @@
+---
+- name: 32
+  hosts: mongo_backup
+#  vars_files: 
+#        - /data1/github/cloudmongodb/ansible/backup_ceshi/files/external_vars.yml 
+  tasks:
+   # - name: test lookup
+      #template: src=template/known_hosts.j2 dest=/etc/ssh/ssh_known_hosts owner=root group=root mode=0644
+      #template: src=template/lookups.j2 dest=/data1/{{ destName }} owner=root group=root mode=0644
+      debug: msg={{ item.value.backup_version }}
+      when: item.value.backup_version == "mongodb3210"
+      with_dict: backup_list
+
+- name: 26
+  hosts: mongo_backup
+  tasks:
+        debug: msg={{ item.value.backup_version }}
+        when: item.value.backup_version == "mongodb2610"
+        with_dict: backup_list
+
