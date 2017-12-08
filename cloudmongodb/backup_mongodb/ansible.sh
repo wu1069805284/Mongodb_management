@@ -1,7 +1,7 @@
 #!/bin/bash
 ## Note:Auto Login MySQL Server
-##
-## Created by wuweijian@58ganji.com
+##wuweijian
+## Created by 
 ## 2016/12/10[Init]
 ##
 ## Change log
