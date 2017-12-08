@@ -1,9 +1,5 @@
 #!/bin/bash
 ## Note:Create a new mongod node
-##
-## Created by jihaodong@58ganji.com
-## 2017/05/19[Init]
-##
 ## Change log
 ##
 source /etc/profile
